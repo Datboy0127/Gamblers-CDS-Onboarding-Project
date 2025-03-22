@@ -36,7 +36,7 @@ def compile(path):
 
 path = f"/content/spreadspoke_scores.csv"
 
-df, summary_stats = compile(file_path_colab)
+df, summary_stats = compile(path)
 
 cleaned_path = "/content/spreadspoke_scores_cleaned.csv"
 df.to_csv(cleaned_path, index=False)
