@@ -125,3 +125,56 @@ elif page == "Project Details":
     st.write("""
     We are using the Python Application workflow to manage our code. Current tests are not always passing because there are spare files in the Github that we will need to clean. 
     """)
+
+    st.subheader("Supervised Learning")
+    st.write("""In this project, we used historical NBA game data to predict the total wins for each team in a season based on performance statistics:
+	•	Points per game (avg_pts)
+	•	Field goal percentage (avg_fg_pct)
+	•	Assists per game (avg_ast)
+	•	Rebounds per game (avg_reb)""")
+
+    st.subheader("KNN")
+    st.write("""How does a k-NN work? : KNN finds the k closests data points by distance (neighbors) and averages the target values of those neighbors to predict the target values for the validation set.
+    """)
+    st.write("""What’s the tradeoff between making k smaller or larger? : Making K larger decreases the MSE, due to better generalization, however smaller K allows for more specificity but is prone to overfitting.
+""")
+    st.write("""What happens when you reduce the number of input features? : Reducing features hurts performance overall, likely because of less data, so the model is too generalized, which hurts accuracy.
+""")
+    st.write("""What happens when you normalize your input data? If it’s already normalized, what happens when you scale your input data to different proportions? : No change, since KNN depends on distance, the scaling does not change the relative distance between data points.""")
+
+    st.subheader("SVR")
+    st.write("""SVR fits a close-to-linear function that stays within margins of truth values of training data. 
+""")
+    st.write("""It is similar to LR in that both try to make predictions for problems with linear output. However, it can use kernels for higher-dimensional data.
+1. Linear kernel
+- For linearly separable data,
+- Behaves like LR
+2. Polynomial kernel
+- Higher dimensional polynomial space
+- Curves for complex data
+3. Rbf Radial Basis Function
+- Infinite dimensional spaces
+- Non-linear relationships
+""")
+    st.write(""" A larger C results in a tighter margin, as there is a larger penalty for errors, which can result in overfitting. This is seen across all Kernels, but RBF is displayed below. Larger gamma values do not seem to improve performance, there seems to be a sweet spot where the margins are just right and error is minimized (on our data), which can be found with hyperparameter tuning. The increase in MSE as gamma increases is likely due to overfitting, as gamma determines how tight the model fits around data.
+""")
+
+    st.subheader("DTR")
+    st.write("""It splits data into regions to predict the continuous value recursively and reducing MSE. Each node makes a decision based on a feature value range and each leaf contains average target value for the data in the group.
+""")
+    st.write("""With a low max depth, the model underfits, with a high max depth, the model overfits.
+""")
+    st.write("""With less features, there can be less noise, which may help accuracy by improving generalization. However if the feature is important then accuracy can be lost.
+""")
+    st.write("""Don't need normalization, so distortion has no effect. This is because the trees split based on thresholds instead of specific values or distances.
+""")
+
+    st.subheader("Comparison")
+    st.write("""Which k-NN, SVR, or DT performed the best? Why do you think that model had low validation loss? : Out of the models, KNN performed the best, with lowest MSE and KNN was able to identify localized patterns within clusters of wins / losses in the data. Whereas the other two must find larger trends.
+""")
+    st.write("""Compare the tradeoffs between using a k-NN, SVR, or DT classifier. Hypothesize in what settings each would outperform the other two. : Some trade offs:
+1. KNN doesn’t require training, so it will be fastest
+2. Decision tree is fastest, as the tree is built and requires few resources to follow
+3. Generally depends on data, but probably KNN since it works with localized points
+4. Generally depends on data, but probably also KNN since it works with localized points and can also work with larger clusters to minimize loss. Since SVR has many hyperparameters it's also possible it can be made to be better at validation (generalization)
+""")
